@@ -6,14 +6,18 @@
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <U8g2lib.h>
 
 const char *ssid = "T400_OLED";
-const char *password = "13245678";
+const char *password = "12345678";
 
 IPAddress ip(192, 168, 18, 1);
 IPAddress netmask(255, 255, 255, 0);
 const int port = 8080; // Port
 ESP8266WebServer server(port);
+
+U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, 12, 14);
+const char *dir = "X";
 
 static const uint8_t pwm_A = 5 ;
 static const uint8_t pwm_B = 4;
@@ -26,7 +30,11 @@ int motor_speed = 1024;
 void setup() {
   Serial.begin(74880);
   Serial.println("\nWificar24");
-  // insert OLED here ...
+  u8g2.begin();
+  u8g2.setFont(u8g2_font_helvR10_tf);
+  u8g2.drawStr(0,16,"SSID: T400_OLED");
+  u8g2.drawStr(0,32,"PW: 12345678");
+  u8g2.sendBuffer();  
   WiFi.mode(WIFI_AP);
   WiFi.softAPConfig(ip, ip, netmask);
   WiFi.softAP(ssid, password);
@@ -39,6 +47,9 @@ void setup() {
   server.on("/move", HTTP_GET, handleMoveRequest);
   server.onNotFound(handleNotFound);
   server.begin();
+  u8g2.drawStr(0,48,"IP: 192.168.18.1");
+  u8g2.drawStr(0,64,"Port: 8080");
+  u8g2.sendBuffer();  
 }
 
 void loop() {
@@ -54,26 +65,34 @@ void handleMoveRequest() {
   if (direction.equals("F")) {
     forward();
     server.send(200, "text / plain", "Move: forward");
+    dir = "F";
   }
   else if (direction.equals("B")) {
     backward();
     server.send(200, "text / plain", "Move: backward");
+    dir = "B";
   }
   else  if (direction.equals("S")) {
     stop_motors();
     server.send(200, "text / plain", "Move: stop");
+    dir = "S";
   }
   else  if (direction.equals("L")) {
     turn_left();
     server.send(200, "text / plain", "Turn: Left");
+    dir = "L";
   }
   else  if (direction.equals("R")) {
     turn_right();
     server.send(200, "text / plain", "Turn: Right");
+    dir = "R";
   }
   else {
     server.send(404, "text / plain", "Move: undefined");
   }
+  u8g2.setFont(u8g2_font_profont17_mf);
+  u8g2.drawStr(110,64,dir);
+  u8g2.sendBuffer();    
 }
 
 void handleNotFound() {
