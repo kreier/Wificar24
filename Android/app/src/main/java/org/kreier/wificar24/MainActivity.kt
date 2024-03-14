@@ -3,6 +3,7 @@ package org.kreier.wificar24
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -33,16 +34,25 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-    SmallTopAppBarExample()
-    Text(
-        text = "Eine neue Zeile.",
-        modifier = modifier.padding(24.dp)
-    )
-    HelloContent()
+    Column(
+//        modifier = Modifier
+//            .statusBarsPadding()
+//            .padding(horizontal = 40.dp
+        ) {
+            Text(
+                text = "Hello $name!",
+                modifier = modifier
+            )
+            Text(
+                text = "Eine neue Zeile.",
+                modifier = modifier.padding(24.dp)
+            )
+            HelloContent()
+        }
+
+
+//    SmallTopAppBarExample()
+
 //    TextButton(
 //        content = Button_1(nummer = RowScope()),
 //        onClick = action(5)
