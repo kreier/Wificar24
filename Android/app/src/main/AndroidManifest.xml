@@ -16,6 +16,9 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation= "sensorLandscape"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/Theme.Wificar24">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
