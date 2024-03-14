@@ -4,12 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import org.kreier.wificar24.ui.theme.Wificar24Theme
 
 class MainActivity : ComponentActivity() {
@@ -35,12 +37,32 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
+    SmallTopAppBarExample()
+    Text(
+        text = "Eine neue Zeile.",
+        modifier = modifier.padding(24.dp)
+    )
+    HelloContent()
+//    TextButton(
+//        content = Button_1(nummer = RowScope()),
+//        onClick = action(5)
+//    )
+}
+
+@Composable
+fun Button_1(nummer: Int) {
+    Text(
+        text = "Erster Button"
+    )
+}
+fun action(): Int {
+    return 2
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Wificar24Theme {
-        Greeting("Wificar24")
+        Greeting("Wificar to 24")
     }
 }
