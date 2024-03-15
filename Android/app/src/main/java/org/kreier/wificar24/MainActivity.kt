@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Wificar24")
+                    Wificar24("Wificar24")
                 }
             }
         }
@@ -33,30 +33,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Wificar24(name: String, modifier: Modifier = Modifier) {
     Column(
 //        modifier = Modifier
 //            .statusBarsPadding()
 //            .padding(horizontal = 40.dp
         ) {
-            Text(
-                text = "Hello $name!",
-                modifier = modifier
-            )
-            Text(
-                text = "Eine neue Zeile.",
-                modifier = modifier.padding(24.dp)
-            )
-            HelloContent()
+            ToolBar24()
+            ControlPanel()
         }
-
-
-//    SmallTopAppBarExample()
-
-//    TextButton(
-//        content = Button_1(nummer = RowScope()),
-//        onClick = action(5)
-//    )
 }
 
 @Composable
@@ -73,6 +58,6 @@ fun action(): Int {
 @Composable
 fun GreetingPreview() {
     Wificar24Theme {
-        Greeting("Wificar to 24")
+        Wificar24("Wificar to 24")
     }
 }
