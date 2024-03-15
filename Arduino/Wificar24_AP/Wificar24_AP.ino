@@ -8,10 +8,10 @@
 #include <ESP8266WebServer.h>
 #include <U8g2lib.h>
 
-const char *ssid = "T400_OLED";
+const char *ssid = "Wificar24";
 const char *password = "12345678";
 
-IPAddress ip(192, 168, 18, 1);
+IPAddress ip(192, 168, 42, 17);
 IPAddress netmask(255, 255, 255, 0);
 const int port = 8080; // Port
 ESP8266WebServer server(port);
