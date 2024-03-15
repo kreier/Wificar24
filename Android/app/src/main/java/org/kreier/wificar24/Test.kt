@@ -43,7 +43,7 @@ fun screenTest() {
 fun main() = runBlocking { // this: CoroutineScope
     launch { // launch a new coroutine and continue
         delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-        CarConnection()
+        CarConnection("S")
         delay(1000L)
         println("World!") // print after delay
     }

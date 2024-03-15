@@ -19,6 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun ControlPanel(modifier:Modifier = Modifier) {
@@ -51,6 +53,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
             Button(
                 onClick = {
                     updateState("F")
+                    drive("F")
 //                    CarConnection()
                 } )
                 {
@@ -63,7 +66,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
             }
             Row {
                 Button(
-                    onClick = { updateState("L") }
+                    onClick = { updateState("L"); drive("L") }
                 )
                 {
                     Image(
@@ -74,7 +77,10 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
 //                    Text(fontSize = 42.sp, text = "←")
                 }
 //                Spacer(modifier.fillMaxWidth(0.3f))
-                Button(onClick = { updateState("S") }) {
+                Button(onClick = {
+                    updateState("S")
+                    drive("S")
+                }) {
 //                    Image(
 //                        painter = painterResource(id = R.drawable.baseline_arrow_forward_24),
 //                        contentDescription = null,
@@ -119,4 +125,11 @@ fun ButtonPanel(modifier: Modifier = Modifier) {
 @Composable
 fun JoystickPanel(stateESP: String) {
     Text(text = "Current State: $stateESP")
+}
+
+fun drive(direction: String) = runBlocking { // this: CoroutineScope
+    launch { // launch a new coroutine and continue
+//        CarConnection(direction)
+    }
+    println(direction)
 }
