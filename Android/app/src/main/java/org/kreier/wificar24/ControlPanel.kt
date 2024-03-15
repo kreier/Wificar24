@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -19,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun ControlPanel(modifier:Modifier = Modifier) {
@@ -58,7 +58,9 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
 //                Text(fontSize = 42.sp, text = "↑")
             }
             Row {
-                Button( onClick = { updateState("L") } )
+                Button(
+                    onClick = { updateState("L") }
+                )
                 {
                     Image(
                         painter = painterResource(id = R.drawable.baseline_arrow_back_24),
@@ -67,7 +69,15 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
                     )
 //                    Text(fontSize = 42.sp, text = "←")
                 }
-                Spacer(modifier.fillMaxWidth(0.3f))
+//                Spacer(modifier.fillMaxWidth(0.3f))
+                Button(onClick = { updateState("S") }) {
+//                    Image(
+//                        painter = painterResource(id = R.drawable.baseline_arrow_forward_24),
+//                        contentDescription = null,
+//                        modifier = Modifier.size(width = arrowSize, height = arrowSize)
+//                    )
+                    Text(fontSize = 42.sp, text = "S")
+                }
                 Button(onClick = { updateState("R") }) {
                     Image(
                         painter = painterResource(id = R.drawable.baseline_arrow_forward_24),
