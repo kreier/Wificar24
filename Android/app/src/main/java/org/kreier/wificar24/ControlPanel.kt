@@ -48,7 +48,11 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
             verticalArrangement = Arrangement.SpaceEvenly
             ) {
             var arrowSize = 60.dp
-            Button( onClick = { updateState("F") } )
+            Button(
+                onClick = {
+                    updateState("F")
+//                    CarConnection()
+                } )
                 {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_arrow_upward_24),
