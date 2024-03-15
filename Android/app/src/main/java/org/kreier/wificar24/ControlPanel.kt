@@ -3,7 +3,6 @@ package org.kreier.wificar24
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,19 +24,23 @@ import androidx.compose.ui.unit.dp
 fun ControlPanel(modifier:Modifier = Modifier) {
     Row(modifier = Modifier.fillMaxWidth(1f)) {
         var robotState = remember { mutableStateOf( "S") }
-        DirectionPanel(modifier = Modifier.fillMaxWidth(0.35f))
+        DirectionPanel(
+            modifier = Modifier.fillMaxWidth(0.35f),
+            state = robotState.value,
+            updateState = { newState -> robotState.value = newState}
+        )
         ButtonPanel(modifier = Modifier.fillMaxWidth(0.3f))
         JoystickPanel(robotState.value)
     }
 }
 
 @Composable
-fun DirectionPanel(modifier: Modifier = Modifier) {
-    BoxWithConstraints {
-        if (maxWidth > maxHeight) {
-            var dWidth = maxHeight
-            var dHeight = maxHeight
-        }
+fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (String) -> Unit) {
+//    BoxWithConstraints {
+//        if (maxWidth > maxHeight) {
+//            var dWidth = maxHeight
+//            var dHeight = maxHeight
+//        }
         Column(modifier = Modifier
             .fillMaxWidth(0.35f)
             .fillMaxHeight(1f),
@@ -45,7 +48,8 @@ fun DirectionPanel(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.SpaceEvenly
             ) {
             var arrowSize = 60.dp
-            Button(onClick = { println("Forward") }) {
+            Button( onClick = { updateState("F") } )
+                {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_arrow_upward_24),
                     contentDescription = null,
@@ -54,7 +58,7 @@ fun DirectionPanel(modifier: Modifier = Modifier) {
 //                Text(fontSize = 42.sp, text = "↑")
             }
             Row {
-                Button( onClick = { println("Left") } )
+                Button( onClick = { updateState("L") } )
                 {
                     Image(
                         painter = painterResource(id = R.drawable.baseline_arrow_back_24),
@@ -64,7 +68,7 @@ fun DirectionPanel(modifier: Modifier = Modifier) {
 //                    Text(fontSize = 42.sp, text = "←")
                 }
                 Spacer(modifier.fillMaxWidth(0.3f))
-                Button(onClick = { println("Right") }) {
+                Button(onClick = { updateState("R") }) {
                     Image(
                         painter = painterResource(id = R.drawable.baseline_arrow_forward_24),
                         contentDescription = null,
@@ -73,7 +77,7 @@ fun DirectionPanel(modifier: Modifier = Modifier) {
 //                    Text(fontSize = 42.sp, text = "→")
                 }
             }
-            Button(onClick = { println("Backward") }) {
+            Button(onClick = { updateState("B") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_arrow_downward_24),
                     contentDescription = null,
@@ -83,7 +87,7 @@ fun DirectionPanel(modifier: Modifier = Modifier) {
             }
         }
     }
-}
+//}
 
 @Composable
 fun ButtonPanel(modifier: Modifier = Modifier) {
@@ -99,6 +103,6 @@ fun ButtonPanel(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun JoystickPanel(stateESP: String, modifier: Modifier = Modifier) {
+fun JoystickPanel(stateESP: String) {
     Text(text = "Current State: $stateESP")
 }
