@@ -23,9 +23,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ToolBar24() {
+fun ToolBar24(mcu: String) {
     Row(modifier = Modifier
-//        .padding(horizontal = 8.dp)
         .fillMaxWidth()
         .bottomBorder(1.dp, DarkGray)
     ) {
@@ -34,7 +33,7 @@ fun ToolBar24() {
             contentDescription = "Menu"
         )
         Text(
-            text = "Connected to ESP8266",
+            text = "Connected to $mcu",
             style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.weight(1f))
@@ -77,5 +76,5 @@ fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
 @Preview
 @Composable
 fun ToolBarPreview() {
-    ToolBar24()
+    ToolBar24("ESP8266")
 }

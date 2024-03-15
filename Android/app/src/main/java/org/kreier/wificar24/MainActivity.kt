@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Wificar24("Wificar24")
+                    Wificar24("ESP8266")
                 }
             }
         }
@@ -33,31 +33,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Wificar24(name: String, modifier: Modifier = Modifier) {
+fun Wificar24(soc: String, modifier: Modifier = Modifier) {
     Column(
-//        modifier = Modifier
-//            .statusBarsPadding()
-//            .padding(horizontal = 40.dp
         ) {
-            ToolBar24()
+            ToolBar24(soc)
             ControlPanel()
         }
 }
 
-@Composable
-fun Button_1(nummer: Int) {
-    Text(
-        text = "Erster Button"
-    )
-}
-fun action(): Int {
-    return 2
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun WificarPreview() {
     Wificar24Theme {
-        Wificar24("Wificar to 24")
+        Wificar24("ESP32")
     }
 }
