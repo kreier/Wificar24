@@ -4,6 +4,11 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        create("production") {
+            storeFile = file("C:\\Users\\mk\\AndroidStudioProjects\\deployment_cert.der")
+        }
+    }
     namespace = "org.kreier.wificar24"
     compileSdk = 34
 
@@ -11,13 +16,14 @@ android {
         applicationId = "org.kreier.wificar24"
         minSdk = 25
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+        versionNameSuffix = "production"
     }
 
     buildTypes {
@@ -60,6 +66,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation("io.ktor:ktor-client-android:2.3.9")
+    implementation("com.google.android.play:integrity:1.3.0")
+    implementation(libs.androidx.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

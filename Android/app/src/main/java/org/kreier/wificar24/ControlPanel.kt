@@ -23,9 +23,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @Composable
-fun ControlPanel(modifier:Modifier = Modifier) {
+fun ControlPanel() {
     Row(modifier = Modifier.fillMaxWidth(1f)) {
-        var robotState = remember { mutableStateOf( "S") }
+        val robotState = remember { mutableStateOf( "S") }
         DirectionPanel(
             modifier = Modifier.fillMaxWidth(0.35f),
             state = robotState.value,
@@ -49,7 +49,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
             ) {
-            var arrowSize = 60.dp
+            val arrowSize = 60.dp
             Button(
                 onClick = {
                     updateState("F")
@@ -59,7 +59,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
                 {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_arrow_upward_24),
-                    contentDescription = null,
+                    contentDescription = "Forward",
                     modifier = Modifier.size(width = arrowSize, height = arrowSize)
                 )
 //                Text(fontSize = 42.sp, text = "↑")
@@ -71,7 +71,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
                 {
                     Image(
                         painter = painterResource(id = R.drawable.baseline_arrow_back_24),
-                        contentDescription = null,
+                        contentDescription = "Left",
                         modifier = Modifier.size(width = arrowSize, height = arrowSize)
                     )
 //                    Text(fontSize = 42.sp, text = "←")
@@ -91,7 +91,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
                 Button(onClick = { updateState("R") }) {
                     Image(
                         painter = painterResource(id = R.drawable.baseline_arrow_forward_24),
-                        contentDescription = null,
+                        contentDescription = "Right",
                         modifier = Modifier.size(width = arrowSize, height = arrowSize)
                     )
 //                    Text(fontSize = 42.sp, text = "→")
@@ -100,7 +100,7 @@ fun DirectionPanel(modifier: Modifier = Modifier, state: String, updateState: (S
             Button(onClick = { updateState("B") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_arrow_downward_24),
-                    contentDescription = null,
+                    contentDescription = "Backward",
                     modifier = Modifier.size(width = arrowSize, height = arrowSize)
                 )
 //                Text(fontSize = 42.sp, text = "↓")
@@ -117,7 +117,7 @@ fun ButtonPanel(modifier: Modifier = Modifier) {
             .fillMaxWidth(0.29f)
             .fillMaxHeight()
     ) {
-        Text(text = "Feedback")
+        Text(text = "Feedback and")
         Text(text = "8 action \nbuttons")
     }
 }

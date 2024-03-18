@@ -42,6 +42,6 @@ fun Wificar24(soc: String, modifier: Modifier = Modifier) {
 @Composable
 fun WificarPreview() {
     Wificar24Theme {
-        Wificar24("ESP32")
+        Wificar24("Production Release")
     }
 }
