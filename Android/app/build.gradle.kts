@@ -5,8 +5,19 @@ plugins {
 
 android {
     signingConfigs {
+        getByName("debug") {
+            storeFile =
+                file("C:\\Users\\mk\\AndroidStudioProjects\\keystore\\deployment_cert_wificar24.der")
+            storePassword = "wificar24"
+            keyPassword = "wificar24"
+        }
         create("production") {
-            storeFile = file("C:\\Users\\mk\\AndroidStudioProjects\\deployment_cert.der")
+            storeFile =
+                file("C:\\Users\\mk\\AndroidStudioProjects\\keystore\\deployment_cert_wificar24.der")
+            storePassword = "wificar24"
+            keyPassword = "wificar24"
+        }
+        create("testing") {
         }
     }
     namespace = "org.kreier.wificar24"
@@ -16,7 +27,7 @@ android {
         applicationId = "org.kreier.wificar24"
         minSdk = 25
         targetSdk = 34
-        versionCode = 4
+        versionCode = 5
         versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -33,6 +44,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("production")
+        }
+        getByName("debug") {
+            versionNameSuffix = "debug"
         }
     }
     compileOptions {
