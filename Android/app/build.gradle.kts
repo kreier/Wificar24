@@ -7,21 +7,25 @@ android {
     signingConfigs {
         getByName("debug") {
             storeFile =
-                file("C:\\Users\\mk\\AndroidStudioProjects\\keystore\\deployment_cert_wificar24.der")
-            storePassword = "wificar24"
-            keyPassword = "wificar24"
+                file("C:\\Users\\matth\\keystores\\cert1.jks")
+            storePassword = "Wificar24"
+            keyPassword = "Wificar24"
         }
         create("production") {
             storeFile =
-                file("C:\\Users\\mk\\AndroidStudioProjects\\keystore\\deployment_cert_wificar24.der")
+                file("C:\\Users\\matth\\keystores\\upload_cert.der")
             storePassword = "wificar24"
             keyPassword = "wificar24"
         }
-        create("testing") {
+        create("release") {
+            storeFile =
+                file("C:\\Users\\matth\\keystores\\cert1.jks")
+            storePassword = "wificar24"
+            keyPassword = "wificar24"
         }
     }
     namespace = "org.kreier.wificar24"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "org.kreier.wificar24"
@@ -38,21 +42,13 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            signingConfig = signingConfigs.getByName("debug")
+        getByName("release") {
+            versionNameSuffix = "release"
+            signingConfig = signingConfigs.getByName("release")
         }
         getByName("debug") {
             versionNameSuffix = "debug"
-        }
-        create("benchmark") {
-            initWith(buildTypes.getByName("release"))
-            matchingFallbacks += listOf("release")
-            isDebuggable = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -73,6 +69,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildToolsVersion = "34.0.0"
 }
 
 dependencies {
@@ -85,8 +82,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation("io.ktor:ktor-client-android:2.3.9")
-    implementation("com.google.android.play:integrity:1.3.0")
+    implementation("io.ktor:ktor-client-android:3.0.1")
+    implementation("com.google.android.play:integrity:1.4.0")
     implementation(libs.androidx.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
