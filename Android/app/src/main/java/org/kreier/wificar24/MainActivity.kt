@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Wificar24(soc: String, modifier: Modifier = Modifier) {
+fun Wificar24(soc: String) {
     Column(
         ) {
             ToolBar24(soc)

@@ -4,10 +4,15 @@
 # Kotlin and Gradle
 *.iml
 .gradle
+/.idea
 /Android/local.properties
 /Android/.idea
 /Android/build
 /Android/captures
+/Android/wrapper
+/Android/caches
+/Android/daemon
+/Android/native
 .externalNativeBuild
 .cxx
 local.properties
