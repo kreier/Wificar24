@@ -1,5 +1,9 @@
 # Wificar24
 
+[![Deploy Jekyll with GitHub Pages dependencies preinstalled](https://github.com/kreier/Wificar24/actions/workflows/jekyll-gh-pages.yml/badge.svg)](https://github.com/kreier/Wificar24/actions/workflows/jekyll-gh-pages.yml)
+[![GitHub release](https://img.shields.io/github/release/kreier/Wificar24.svg)](https://GitHub.com/kreier/Wificar24/releases/)
+[![MIT license](https://img.shields.io/github/license/kreier/Wificar24)](https://kreier.mit-license.org/)
+
 Remote control of an ESP8266 car with Android and iOS
 
 ## App in Google Play Store
